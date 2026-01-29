@@ -57,6 +57,12 @@
       color: #1e88e5;
     }
     
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+    
     .nav-links a {
       margin-left: 30px;
       text-decoration: none;
@@ -66,6 +72,35 @@
     }
     
     .nav-links a:hover {
+      color: #1e88e5;
+    }
+    
+    /* Language Switcher */
+    .lang-switcher {
+      display: flex;
+      background: #f0f0f0;
+      border-radius: 20px;
+      padding: 4px;
+    }
+    
+    .lang-btn {
+      padding: 6px 14px;
+      border: none;
+      background: transparent;
+      border-radius: 16px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 14px;
+      color: #666;
+      transition: all 0.3s;
+    }
+    
+    .lang-btn.active {
+      background: #1e88e5;
+      color: #fff;
+    }
+    
+    .lang-btn:hover:not(.active) {
       color: #1e88e5;
     }
     
@@ -554,6 +589,11 @@
       color: #fff;
     }
     
+    .footer-col p {
+      color: rgba(255,255,255,0.7);
+      line-height: 1.6;
+    }
+    
     .footer-bottom {
       text-align: center;
       padding-top: 30px;
@@ -587,6 +627,23 @@
       .level-bar {
         justify-content: center;
       }
+      
+      .fish-arrow {
+        display: none;
+      }
+      
+      .fish-evolution {
+        gap: 15px;
+      }
+      
+      .fish-stage {
+        width: 80px;
+        height: 80px;
+      }
+      
+      .fish-stage .emoji {
+        font-size: 32px;
+      }
     }
   </style>
 </head>
@@ -595,10 +652,16 @@
     <div class="container">
       <nav>
         <div class="logo">💧 Water Reminder</div>
-        <div class="nav-links">
-          <a href="#features">ゲーム機能</a>
-          <a href="#pricing">料金</a>
-          <a href="#download">ダウンロード</a>
+        <div class="nav-right">
+          <div class="nav-links">
+            <a href="#features" data-i18n="nav.features">ゲーム機能</a>
+            <a href="#pricing" data-i18n="nav.pricing">料金</a>
+            <a href="#download" data-i18n="nav.download">ダウンロード</a>
+          </div>
+          <div class="lang-switcher">
+            <button class="lang-btn active" data-lang="ja">🇯🇵 JP</button>
+            <button class="lang-btn" data-lang="en">🇺🇸 EN</button>
+          </div>
         </div>
       </nav>
     </div>
@@ -614,16 +677,16 @@
     </div>
     
     <div class="container">
-      <span class="hero-badge">🎮 ゲーム感覚で健康習慣！</span>
-      <h1>水を飲むのが<br><span class="game">楽しくなる</span>アプリ</h1>
-      <p>レベルアップ、実績解除、ペット育成...ゲーミフィケーションで毎日の水分補給が楽しみに！目標達成したくなる仕掛けが満載です。</p>
+      <span class="hero-badge" data-i18n="hero.badge">🎮 ゲーム感覚で健康習慣！</span>
+      <h1 data-i18n="hero.title">水を飲むのが<br><span class="game">楽しくなる</span>アプリ</h1>
+      <p data-i18n="hero.subtitle">レベルアップ、実績解除、ペット育成...ゲーミフィケーションで毎日の水分補給が楽しみに！目標達成したくなる仕掛けが満載です。</p>
       
       <div class="download-buttons" id="download">
         <a href="https://apps.apple.com/app/water-reminder" class="download-btn">
-          <span>🍎</span> App Storeでダウンロード
+          <span>🍎</span> <span data-i18n="hero.appstore">App Storeでダウンロード</span>
         </a>
         <a href="https://play.google.com/store/apps/details?id=com.turtlerabbit.waterreminder" class="download-btn">
-          <span>▶️</span> Google Playで入手
+          <span>▶️</span> <span data-i18n="hero.playstore">Google Playで入手</span>
         </a>
       </div>
     </div>
@@ -632,50 +695,50 @@
   <!-- Game Features -->
   <section class="game-features" id="features">
     <div class="container">
-      <h2 class="section-title">🎮 ゲーム機能で楽しく継続</h2>
-      <p class="section-subtitle">単なる記録アプリじゃない。毎日開きたくなるゲーム性を搭載！</p>
+      <h2 class="section-title" data-i18n="features.title">🎮 ゲーム機能で楽しく継続</h2>
+      <p class="section-subtitle" data-i18n="features.subtitle">単なる記録アプリじゃない。毎日開きたくなるゲーム性を搭載！</p>
       
       <div class="game-grid">
         <div class="game-card">
           <span class="game-card-icon">⭐</span>
-          <h3>レベル＆XPシステム</h3>
-          <p>水を飲むたびにXPを獲得！レベルアップすると称号がグレードアップ。水神を目指そう！</p>
-          <span class="xp-badge">100mlで+5 XP</span>
+          <h3 data-i18n="features.xp.title">レベル＆XPシステム</h3>
+          <p data-i18n="features.xp.desc">水を飲むたびにXPを獲得！レベルアップすると称号がグレードアップ。水神を目指そう！</p>
+          <span class="xp-badge" data-i18n="features.xp.badge">100mlで+5 XP</span>
         </div>
         
         <div class="game-card">
           <span class="game-card-icon">🔥</span>
-          <h3>連続達成ストリーク</h3>
-          <p>毎日目標を達成してストリークを伸ばそう！連続記録が途切れないようにモチベーションUP</p>
-          <span class="xp-badge">ストリークボーナス付き</span>
+          <h3 data-i18n="features.streak.title">連続達成ストリーク</h3>
+          <p data-i18n="features.streak.desc">毎日目標を達成してストリークを伸ばそう！連続記録が途切れないようにモチベーションUP</p>
+          <span class="xp-badge" data-i18n="features.streak.badge">ストリークボーナス付き</span>
         </div>
         
         <div class="game-card">
           <span class="game-card-icon">🏆</span>
-          <h3>実績バッジ</h3>
-          <p>「三日坊主卒業」「水の達人」など様々な実績を解除！コレクション欲を刺激します</p>
-          <span class="xp-badge">10種類以上の実績</span>
+          <h3 data-i18n="features.achievement.title">実績バッジ</h3>
+          <p data-i18n="features.achievement.desc">「三日坊主卒業」「水の達人」など様々な実績を解除！コレクション欲を刺激します</p>
+          <span class="xp-badge" data-i18n="features.achievement.badge">10種類以上の実績</span>
         </div>
         
         <div class="game-card">
           <span class="game-card-icon">🐟</span>
-          <h3>ペット育成</h3>
-          <p>あなたの水やり（水分補給）で魚が成長！卵から伝説の魚まで育てよう</p>
-          <span class="xp-badge">6段階の成長</span>
+          <h3 data-i18n="features.pet.title">ペット育成</h3>
+          <p data-i18n="features.pet.desc">あなたの水やり（水分補給）で魚が成長！卵から伝説の魚まで育てよう</p>
+          <span class="xp-badge" data-i18n="features.pet.badge">6段階の成長</span>
         </div>
         
         <div class="game-card">
           <span class="game-card-icon">🎯</span>
-          <h3>デイリーチャレンジ</h3>
-          <p>毎日変わるミニミッションでボーナスXPをゲット！飽きさせません</p>
-          <span class="xp-badge">毎日新しいミッション</span>
+          <h3 data-i18n="features.challenge.title">デイリーチャレンジ</h3>
+          <p data-i18n="features.challenge.desc">毎日変わるミニミッションでボーナスXPをゲット！飽きさせません</p>
+          <span class="xp-badge" data-i18n="features.challenge.badge">毎日新しいミッション</span>
         </div>
         
         <div class="game-card">
           <span class="game-card-icon">🔔</span>
-          <h3>スマートリマインダー</h3>
-          <p>忘れがちな水分補給をやさしくリマインド。カスタマイズ可能な通知間隔</p>
-          <span class="xp-badge">習慣化をサポート</span>
+          <h3 data-i18n="features.reminder.title">スマートリマインダー</h3>
+          <p data-i18n="features.reminder.desc">忘れがちな水分補給をやさしくリマインド。カスタマイズ可能な通知間隔</p>
+          <span class="xp-badge" data-i18n="features.reminder.badge">習慣化をサポート</span>
         </div>
       </div>
     </div>
@@ -684,35 +747,35 @@
   <!-- Level System -->
   <section class="level-section">
     <div class="container">
-      <h2 class="section-title">📈 レベルアップして称号をゲット</h2>
-      <p class="section-subtitle">水神への道のりを楽しもう</p>
+      <h2 class="section-title" data-i18n="levels.title">📈 レベルアップして称号をゲット</h2>
+      <p class="section-subtitle" data-i18n="levels.subtitle">水神への道のりを楽しもう</p>
       
       <div class="level-progress">
         <div class="level-bar">
           <div class="level-item">
             <span class="icon">💧</span>
             <span class="level">Lv.1</span>
-            <span class="name">水滴見習い</span>
+            <span class="name" data-i18n="levels.1">水滴見習い</span>
           </div>
           <div class="level-item">
             <span class="icon">🌊</span>
             <span class="level">Lv.3</span>
-            <span class="name">泳ぎの達人</span>
+            <span class="name" data-i18n="levels.3">泳ぎの達人</span>
           </div>
           <div class="level-item">
             <span class="icon">🌴</span>
             <span class="level">Lv.5</span>
-            <span class="name">オアシスの守り手</span>
+            <span class="name" data-i18n="levels.5">オアシスの守り手</span>
           </div>
           <div class="level-item">
             <span class="icon">🐋</span>
             <span class="level">Lv.8</span>
-            <span class="name">深海の王</span>
+            <span class="name" data-i18n="levels.8">深海の王</span>
           </div>
           <div class="level-item" style="background: linear-gradient(135deg, #ffd54f, #ffb300);">
             <span class="icon">🔱</span>
             <span class="level">Lv.10</span>
-            <span class="name">水神</span>
+            <span class="name" data-i18n="levels.10">水神</span>
           </div>
         </div>
       </div>
@@ -722,38 +785,38 @@
   <!-- Fish Evolution -->
   <section class="fish-section">
     <div class="container">
-      <h2 class="section-title">🐠 ペットを育てよう</h2>
-      <p class="section-subtitle">毎日水分補給を続けると、あなたの魚が成長します</p>
+      <h2 class="section-title" data-i18n="fish.title">🐠 ペットを育てよう</h2>
+      <p class="section-subtitle" data-i18n="fish.subtitle">毎日水分補給を続けると、あなたの魚が成長します</p>
       
       <div class="fish-evolution">
         <div class="fish-stage">
           <span class="emoji">🥚</span>
-          <span class="name">卵</span>
+          <span class="name" data-i18n="fish.egg">卵</span>
         </div>
         <span class="fish-arrow">→</span>
         <div class="fish-stage">
           <span class="emoji">🐣</span>
-          <span class="name">稚魚</span>
+          <span class="name" data-i18n="fish.fry">稚魚</span>
         </div>
         <span class="fish-arrow">→</span>
         <div class="fish-stage">
           <span class="emoji">🐟</span>
-          <span class="name">小魚</span>
+          <span class="name" data-i18n="fish.small">小魚</span>
         </div>
         <span class="fish-arrow">→</span>
         <div class="fish-stage">
           <span class="emoji">🐠</span>
-          <span class="name">若魚</span>
+          <span class="name" data-i18n="fish.young">若魚</span>
         </div>
         <span class="fish-arrow">→</span>
         <div class="fish-stage">
           <span class="emoji">🐡</span>
-          <span class="name">成魚</span>
+          <span class="name" data-i18n="fish.adult">成魚</span>
         </div>
         <span class="fish-arrow">→</span>
         <div class="fish-stage" style="background: linear-gradient(135deg, #e3f2fd, #bbdefb);">
           <span class="emoji">🐋</span>
-          <span class="name">伝説の魚</span>
+          <span class="name" data-i18n="fish.legend">伝説の魚</span>
         </div>
       </div>
     </div>
@@ -762,39 +825,39 @@
   <!-- Achievements -->
   <section class="achievements-section">
     <div class="container">
-      <h2 class="section-title">🏆 実績をコンプリートしよう</h2>
-      <p class="section-subtitle">様々な実績を解除してXPをゲット！</p>
+      <h2 class="section-title" data-i18n="achievements.title">🏆 実績をコンプリートしよう</h2>
+      <p class="section-subtitle" data-i18n="achievements.subtitle">様々な実績を解除してXPをゲット！</p>
       
       <div class="achievement-grid">
         <div class="achievement-card">
           <span class="icon">🎉</span>
-          <div class="name">最初の一杯</div>
-          <div class="desc">初めて水を記録した</div>
+          <div class="name" data-i18n="achievements.first.name">最初の一杯</div>
+          <div class="desc" data-i18n="achievements.first.desc">初めて水を記録した</div>
         </div>
         <div class="achievement-card">
           <span class="icon">🏆</span>
-          <div class="name">目標達成！</div>
-          <div class="desc">初めて1日の目標を達成</div>
+          <div class="name" data-i18n="achievements.goal.name">目標達成！</div>
+          <div class="desc" data-i18n="achievements.goal.desc">初めて1日の目標を達成</div>
         </div>
         <div class="achievement-card">
           <span class="icon">🔥</span>
-          <div class="name">三日坊主卒業</div>
-          <div class="desc">3日連続で目標達成</div>
+          <div class="name" data-i18n="achievements.streak3.name">三日坊主卒業</div>
+          <div class="desc" data-i18n="achievements.streak3.desc">3日連続で目標達成</div>
         </div>
         <div class="achievement-card">
           <span class="icon">⚡</span>
-          <div class="name">一週間の習慣</div>
-          <div class="desc">7日連続で目標達成</div>
+          <div class="name" data-i18n="achievements.streak7.name">一週間の習慣</div>
+          <div class="desc" data-i18n="achievements.streak7.desc">7日連続で目標達成</div>
         </div>
         <div class="achievement-card">
           <span class="icon">👑</span>
-          <div class="name">水の達人</div>
-          <div class="desc">30日連続で目標達成</div>
+          <div class="name" data-i18n="achievements.streak30.name">水の達人</div>
+          <div class="desc" data-i18n="achievements.streak30.desc">30日連続で目標達成</div>
         </div>
         <div class="achievement-card">
           <span class="icon">🚀</span>
-          <div class="name">オーバーアチーバー</div>
-          <div class="desc">目標の150%を達成</div>
+          <div class="name" data-i18n="achievements.over.name">オーバーアチーバー</div>
+          <div class="desc" data-i18n="achievements.over.desc">目標の150%を達成</div>
         </div>
       </div>
     </div>
@@ -806,19 +869,19 @@
       <div class="stats-grid">
         <div class="stat-item">
           <div class="number">75%</div>
-          <div class="label">の人が水分不足</div>
+          <div class="label" data-i18n="stats.dehydrated">の人が水分不足</div>
         </div>
         <div class="stat-item">
           <div class="number">2L</div>
-          <div class="label">1日の推奨摂取量</div>
+          <div class="label" data-i18n="stats.recommended">1日の推奨摂取量</div>
         </div>
         <div class="stat-item">
           <div class="number">3x</div>
-          <div class="label">ゲーム化で継続率UP</div>
+          <div class="label" data-i18n="stats.gamification">ゲーム化で継続率UP</div>
         </div>
         <div class="stat-item">
           <div class="number">🏆</div>
-          <div class="label">10種類以上の実績</div>
+          <div class="label" data-i18n="stats.achievements">10種類以上の実績</div>
         </div>
       </div>
     </div>
@@ -827,38 +890,38 @@
   <!-- Pricing -->
   <section class="pricing" id="pricing">
     <div class="container">
-      <h2 class="section-title">💰 シンプルな料金</h2>
-      <p class="section-subtitle">基本機能は永久無料！もっと楽しみたい方にはPremiumも</p>
+      <h2 class="section-title" data-i18n="pricing.title">💰 シンプルな料金</h2>
+      <p class="section-subtitle" data-i18n="pricing.subtitle">基本機能は永久無料！もっと楽しみたい方にはPremiumも</p>
       
       <div class="pricing-grid">
         <div class="pricing-card">
           <div class="pricing-title">Free</div>
-          <div class="pricing-price">¥0</div>
-          <div class="pricing-period">ずっと無料</div>
+          <div class="pricing-price" data-i18n="pricing.free.price">¥0</div>
+          <div class="pricing-period" data-i18n="pricing.free.period">ずっと無料</div>
           <ul class="pricing-features">
-            <li>✓ 水分記録＆目標設定</li>
-            <li>✓ レベル＆XPシステム</li>
-            <li>✓ 実績バッジ</li>
-            <li>✓ ペット育成</li>
-            <li>✓ リマインダー通知</li>
-            <li>✓ 7日間の履歴</li>
-            <li>— 30日間の履歴</li>
-            <li>— 広告なし</li>
+            <li data-i18n="pricing.free.f1">✓ 水分記録＆目標設定</li>
+            <li data-i18n="pricing.free.f2">✓ レベル＆XPシステム</li>
+            <li data-i18n="pricing.free.f3">✓ 実績バッジ</li>
+            <li data-i18n="pricing.free.f4">✓ ペット育成</li>
+            <li data-i18n="pricing.free.f5">✓ リマインダー通知</li>
+            <li data-i18n="pricing.free.f6">✓ 7日間の履歴</li>
+            <li data-i18n="pricing.free.f7">— 30日間の履歴</li>
+            <li data-i18n="pricing.free.f8">— 広告なし</li>
           </ul>
         </div>
         <div class="pricing-card featured">
-          <div class="pricing-badge">🎉 おすすめ</div>
+          <div class="pricing-badge" data-i18n="pricing.premium.badge">🎉 おすすめ</div>
           <div class="pricing-title">Premium</div>
-          <div class="pricing-price">¥1,980</div>
-          <div class="pricing-period">/年</div>
+          <div class="pricing-price" data-i18n="pricing.premium.price">¥1,980</div>
+          <div class="pricing-period" data-i18n="pricing.premium.period">/年</div>
           <ul class="pricing-features">
-            <li>✓ すべての無料機能</li>
-            <li>✓ 30日間の履歴</li>
-            <li>✓ 広告なし</li>
-            <li>✓ ホーム画面ウィジェット</li>
-            <li>✓ データエクスポート</li>
-            <li>✓ 優先サポート</li>
-            <li>✓ 新機能の早期アクセス</li>
+            <li data-i18n="pricing.premium.f1">✓ すべての無料機能</li>
+            <li data-i18n="pricing.premium.f2">✓ 30日間の履歴</li>
+            <li data-i18n="pricing.premium.f3">✓ 広告なし</li>
+            <li data-i18n="pricing.premium.f4">✓ ホーム画面ウィジェット</li>
+            <li data-i18n="pricing.premium.f5">✓ データエクスポート</li>
+            <li data-i18n="pricing.premium.f6">✓ 優先サポート</li>
+            <li data-i18n="pricing.premium.f7">✓ 新機能の早期アクセス</li>
           </ul>
         </div>
       </div>
@@ -869,14 +932,14 @@
   <section class="cta">
     <div class="container">
       <span class="cta-emoji">🎮💧</span>
-      <h2>今日から水分補給を<br>ゲーム化しよう！</h2>
-      <p>ダウンロードして、水神への道を歩み始めよう</p>
+      <h2 data-i18n="cta.title">今日から水分補給を<br>ゲーム化しよう！</h2>
+      <p data-i18n="cta.subtitle">ダウンロードして、水神への道を歩み始めよう</p>
       <div class="download-buttons">
         <a href="https://apps.apple.com/app/water-reminder" class="download-btn">
-          <span>🍎</span> App Storeでダウンロード
+          <span>🍎</span> <span data-i18n="hero.appstore">App Storeでダウンロード</span>
         </a>
         <a href="https://play.google.com/store/apps/details?id=com.turtlerabbit.waterreminder" class="download-btn">
-          <span>▶️</span> Google Playで入手
+          <span>▶️</span> <span data-i18n="hero.playstore">Google Playで入手</span>
         </a>
       </div>
     </div>
@@ -888,23 +951,21 @@
       <div class="footer-grid">
         <div class="footer-col">
           <h4>💧 Water Reminder</h4>
-          <p style="color: rgba(255,255,255,0.7); line-height: 1.6;">
-            ゲーム感覚で楽しく水分補給。健康習慣をサポートします。
-          </p>
+          <p data-i18n="footer.desc">ゲーム感覚で楽しく水分補給。健康習慣をサポートします。</p>
         </div>
         <div class="footer-col">
-          <h4>リンク</h4>
-          <a href="#features">ゲーム機能</a>
-          <a href="#pricing">料金</a>
-          <a href="#download">ダウンロード</a>
+          <h4 data-i18n="footer.links">リンク</h4>
+          <a href="#features" data-i18n="nav.features">ゲーム機能</a>
+          <a href="#pricing" data-i18n="nav.pricing">料金</a>
+          <a href="#download" data-i18n="nav.download">ダウンロード</a>
         </div>
         <div class="footer-col">
-          <h4>法的情報</h4>
-          <a href="./privacy.html">プライバシーポリシー</a>
-          <a href="./terms.html">利用規約</a>
+          <h4 data-i18n="footer.legal">法的情報</h4>
+          <a href="./privacy.html" data-i18n="footer.privacy">プライバシーポリシー</a>
+          <a href="./terms.html" data-i18n="footer.terms">利用規約</a>
         </div>
         <div class="footer-col">
-          <h4>お問い合わせ</h4>
+          <h4 data-i18n="footer.contact">お問い合わせ</h4>
           <a href="mailto:support@water-reminder.app">support@water-reminder.app</a>
         </div>
       </div>
@@ -914,5 +975,244 @@
       </div>
     </div>
   </footer>
+
+  <script>
+    // 多言語対応
+    const translations = {
+      ja: {
+        'nav.features': 'ゲーム機能',
+        'nav.pricing': '料金',
+        'nav.download': 'ダウンロード',
+        'hero.badge': '🎮 ゲーム感覚で健康習慣！',
+        'hero.title': '水を飲むのが<br><span class="game">楽しくなる</span>アプリ',
+        'hero.subtitle': 'レベルアップ、実績解除、ペット育成...ゲーミフィケーションで毎日の水分補給が楽しみに！目標達成したくなる仕掛けが満載です。',
+        'hero.appstore': 'App Storeでダウンロード',
+        'hero.playstore': 'Google Playで入手',
+        'features.title': '🎮 ゲーム機能で楽しく継続',
+        'features.subtitle': '単なる記録アプリじゃない。毎日開きたくなるゲーム性を搭載！',
+        'features.xp.title': 'レベル＆XPシステム',
+        'features.xp.desc': '水を飲むたびにXPを獲得！レベルアップすると称号がグレードアップ。水神を目指そう！',
+        'features.xp.badge': '100mlで+5 XP',
+        'features.streak.title': '連続達成ストリーク',
+        'features.streak.desc': '毎日目標を達成してストリークを伸ばそう！連続記録が途切れないようにモチベーションUP',
+        'features.streak.badge': 'ストリークボーナス付き',
+        'features.achievement.title': '実績バッジ',
+        'features.achievement.desc': '「三日坊主卒業」「水の達人」など様々な実績を解除！コレクション欲を刺激します',
+        'features.achievement.badge': '10種類以上の実績',
+        'features.pet.title': 'ペット育成',
+        'features.pet.desc': 'あなたの水やり（水分補給）で魚が成長！卵から伝説の魚まで育てよう',
+        'features.pet.badge': '6段階の成長',
+        'features.challenge.title': 'デイリーチャレンジ',
+        'features.challenge.desc': '毎日変わるミニミッションでボーナスXPをゲット！飽きさせません',
+        'features.challenge.badge': '毎日新しいミッション',
+        'features.reminder.title': 'スマートリマインダー',
+        'features.reminder.desc': '忘れがちな水分補給をやさしくリマインド。カスタマイズ可能な通知間隔',
+        'features.reminder.badge': '習慣化をサポート',
+        'levels.title': '📈 レベルアップして称号をゲット',
+        'levels.subtitle': '水神への道のりを楽しもう',
+        'levels.1': '水滴見習い',
+        'levels.3': '泳ぎの達人',
+        'levels.5': 'オアシスの守り手',
+        'levels.8': '深海の王',
+        'levels.10': '水神',
+        'fish.title': '🐠 ペットを育てよう',
+        'fish.subtitle': '毎日水分補給を続けると、あなたの魚が成長します',
+        'fish.egg': '卵',
+        'fish.fry': '稚魚',
+        'fish.small': '小魚',
+        'fish.young': '若魚',
+        'fish.adult': '成魚',
+        'fish.legend': '伝説の魚',
+        'achievements.title': '🏆 実績をコンプリートしよう',
+        'achievements.subtitle': '様々な実績を解除してXPをゲット！',
+        'achievements.first.name': '最初の一杯',
+        'achievements.first.desc': '初めて水を記録した',
+        'achievements.goal.name': '目標達成！',
+        'achievements.goal.desc': '初めて1日の目標を達成',
+        'achievements.streak3.name': '三日坊主卒業',
+        'achievements.streak3.desc': '3日連続で目標達成',
+        'achievements.streak7.name': '一週間の習慣',
+        'achievements.streak7.desc': '7日連続で目標達成',
+        'achievements.streak30.name': '水の達人',
+        'achievements.streak30.desc': '30日連続で目標達成',
+        'achievements.over.name': 'オーバーアチーバー',
+        'achievements.over.desc': '目標の150%を達成',
+        'stats.dehydrated': 'の人が水分不足',
+        'stats.recommended': '1日の推奨摂取量',
+        'stats.gamification': 'ゲーム化で継続率UP',
+        'stats.achievements': '10種類以上の実績',
+        'pricing.title': '💰 シンプルな料金',
+        'pricing.subtitle': '基本機能は永久無料！もっと楽しみたい方にはPremiumも',
+        'pricing.free.price': '¥0',
+        'pricing.free.period': 'ずっと無料',
+        'pricing.free.f1': '✓ 水分記録＆目標設定',
+        'pricing.free.f2': '✓ レベル＆XPシステム',
+        'pricing.free.f3': '✓ 実績バッジ',
+        'pricing.free.f4': '✓ ペット育成',
+        'pricing.free.f5': '✓ リマインダー通知',
+        'pricing.free.f6': '✓ 7日間の履歴',
+        'pricing.free.f7': '— 30日間の履歴',
+        'pricing.free.f8': '— 広告なし',
+        'pricing.premium.badge': '🎉 おすすめ',
+        'pricing.premium.price': '¥1,980',
+        'pricing.premium.period': '/年',
+        'pricing.premium.f1': '✓ すべての無料機能',
+        'pricing.premium.f2': '✓ 30日間の履歴',
+        'pricing.premium.f3': '✓ 広告なし',
+        'pricing.premium.f4': '✓ ホーム画面ウィジェット',
+        'pricing.premium.f5': '✓ データエクスポート',
+        'pricing.premium.f6': '✓ 優先サポート',
+        'pricing.premium.f7': '✓ 新機能の早期アクセス',
+        'cta.title': '今日から水分補給を<br>ゲーム化しよう！',
+        'cta.subtitle': 'ダウンロードして、水神への道を歩み始めよう',
+        'footer.desc': 'ゲーム感覚で楽しく水分補給。健康習慣をサポートします。',
+        'footer.links': 'リンク',
+        'footer.legal': '法的情報',
+        'footer.privacy': 'プライバシーポリシー',
+        'footer.terms': '利用規約',
+        'footer.contact': 'お問い合わせ',
+      },
+      en: {
+        'nav.features': 'Features',
+        'nav.pricing': 'Pricing',
+        'nav.download': 'Download',
+        'hero.badge': '🎮 Gamify Your Health Habits!',
+        'hero.title': 'Make Drinking Water<br><span class="game">Fun!</span>',
+        'hero.subtitle': 'Level up, unlock achievements, raise pets... Gamification makes daily hydration exciting! Packed with features that make you WANT to hit your goals.',
+        'hero.appstore': 'Download on App Store',
+        'hero.playstore': 'Get it on Google Play',
+        'features.title': '🎮 Fun Game Features',
+        'features.subtitle': 'Not just a tracking app. Game mechanics that make you want to open it every day!',
+        'features.xp.title': 'Level & XP System',
+        'features.xp.desc': 'Earn XP every time you drink! Level up to upgrade your title. Aim for Water God!',
+        'features.xp.badge': '+5 XP per 100ml',
+        'features.streak.title': 'Daily Streaks',
+        'features.streak.desc': 'Hit your goal daily and build your streak! Stay motivated to keep your record going.',
+        'features.streak.badge': 'Streak Bonuses',
+        'features.achievement.title': 'Achievement Badges',
+        'features.achievement.desc': 'Unlock achievements like "No More Quitter" and "Water Master"! Feed your collector\'s spirit.',
+        'features.achievement.badge': '10+ Achievements',
+        'features.pet.title': 'Pet Raising',
+        'features.pet.desc': 'Your fish grows as you hydrate! Raise it from an egg to a legendary fish.',
+        'features.pet.badge': '6 Growth Stages',
+        'features.challenge.title': 'Daily Challenges',
+        'features.challenge.desc': 'New mini-missions every day for bonus XP! Never get bored.',
+        'features.challenge.badge': 'New Missions Daily',
+        'features.reminder.title': 'Smart Reminders',
+        'features.reminder.desc': 'Gentle reminders to drink water. Customizable notification intervals.',
+        'features.reminder.badge': 'Build Habits',
+        'levels.title': '📈 Level Up & Earn Titles',
+        'levels.subtitle': 'Enjoy your journey to Water God',
+        'levels.1': 'Water Droplet',
+        'levels.3': 'Swim Master',
+        'levels.5': 'Oasis Guardian',
+        'levels.8': 'Deep Sea King',
+        'levels.10': 'Water God',
+        'fish.title': '🐠 Raise Your Pet',
+        'fish.subtitle': 'Keep hydrating daily and watch your fish grow',
+        'fish.egg': 'Egg',
+        'fish.fry': 'Fry',
+        'fish.small': 'Small Fish',
+        'fish.young': 'Young Fish',
+        'fish.adult': 'Adult Fish',
+        'fish.legend': 'Legendary Fish',
+        'achievements.title': '🏆 Complete All Achievements',
+        'achievements.subtitle': 'Unlock achievements and earn XP!',
+        'achievements.first.name': 'First Glass',
+        'achievements.first.desc': 'Logged water for the first time',
+        'achievements.goal.name': 'Goal Achieved!',
+        'achievements.goal.desc': 'Hit your daily goal for the first time',
+        'achievements.streak3.name': 'No More Quitter',
+        'achievements.streak3.desc': '3-day goal streak',
+        'achievements.streak7.name': 'Weekly Habit',
+        'achievements.streak7.desc': '7-day goal streak',
+        'achievements.streak30.name': 'Water Master',
+        'achievements.streak30.desc': '30-day goal streak',
+        'achievements.over.name': 'Overachiever',
+        'achievements.over.desc': 'Hit 150% of your goal',
+        'stats.dehydrated': 'of people are dehydrated',
+        'stats.recommended': 'daily recommended intake',
+        'stats.gamification': 'better retention with gamification',
+        'stats.achievements': '10+ achievements',
+        'pricing.title': '💰 Simple Pricing',
+        'pricing.subtitle': 'Core features free forever! Premium for power users.',
+        'pricing.free.price': '$0',
+        'pricing.free.period': 'forever',
+        'pricing.free.f1': '✓ Water tracking & goals',
+        'pricing.free.f2': '✓ Level & XP system',
+        'pricing.free.f3': '✓ Achievement badges',
+        'pricing.free.f4': '✓ Pet raising',
+        'pricing.free.f5': '✓ Reminder notifications',
+        'pricing.free.f6': '✓ 7-day history',
+        'pricing.free.f7': '— 30-day history',
+        'pricing.free.f8': '— Ad-free',
+        'pricing.premium.badge': '🎉 Best Value',
+        'pricing.premium.price': '$19.99',
+        'pricing.premium.period': '/year',
+        'pricing.premium.f1': '✓ All free features',
+        'pricing.premium.f2': '✓ 30-day history',
+        'pricing.premium.f3': '✓ Ad-free experience',
+        'pricing.premium.f4': '✓ Home screen widgets',
+        'pricing.premium.f5': '✓ Data export',
+        'pricing.premium.f6': '✓ Priority support',
+        'pricing.premium.f7': '✓ Early access to features',
+        'cta.title': 'Start Gamifying Your<br>Hydration Today!',
+        'cta.subtitle': 'Download now and begin your journey to Water God',
+        'footer.desc': 'Make hydration fun with gamification. Supporting your healthy habits.',
+        'footer.links': 'Links',
+        'footer.legal': 'Legal',
+        'footer.privacy': 'Privacy Policy',
+        'footer.terms': 'Terms of Service',
+        'footer.contact': 'Contact',
+      }
+    };
+
+    let currentLang = localStorage.getItem('lang') || 'ja';
+
+    function setLanguage(lang) {
+      currentLang = lang;
+      localStorage.setItem('lang', lang);
+      document.documentElement.lang = lang;
+      
+      // Update all translatable elements
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (translations[lang][key]) {
+          el.innerHTML = translations[lang][key];
+        }
+      });
+      
+      // Update active button
+      document.querySelectorAll('.lang-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
+      });
+      
+      // Update page title
+      document.title = lang === 'ja' 
+        ? 'Water Reminder - 水を飲むのが楽しくなるアプリ 🎮💧'
+        : 'Water Reminder - Make Drinking Water Fun! 🎮💧';
+    }
+
+    // Initialize
+    document.addEventListener('DOMContentLoaded', () => {
+      // Set initial language
+      setLanguage(currentLang);
+      
+      // Add click handlers
+      document.querySelectorAll('.lang-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          setLanguage(btn.getAttribute('data-lang'));
+        });
+      });
+      
+      // Detect browser language on first visit
+      if (!localStorage.getItem('lang')) {
+        const browserLang = navigator.language.slice(0, 2);
+        if (browserLang !== 'ja') {
+          setLanguage('en');
+        }
+      }
+    });
+  </script>
 </body>
 </html>
