@@ -99,23 +99,26 @@
     .animate-on-scroll {
       opacity: 0;
       transform: translateY(40px);
-      transition: all 0.8s ease-out;
+      transition: all 0.8s ease;
     }
     
-    .animate-on-scroll.visible {
+    .animate-on-scroll.animate {
       opacity: 1;
       transform: translateY(0);
     }
     
     /* Header */
     header {
-      padding: 20px 0;
       position: fixed;
-      width: 100%;
       top: 0;
-      background: rgba(255,255,255,0.95);
-      backdrop-filter: blur(20px);
-      z-index: 100;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      padding: 20px 0;
+      transition: all 0.3s;
       box-shadow: 0 2px 30px rgba(0,0,0,0.08);
     }
     
@@ -137,186 +140,176 @@
     .nav-right {
       display: flex;
       align-items: center;
-      gap: 20px;
+      gap: 30px;
+    }
+    
+    .nav-links {
+      display: flex;
+      gap: 30px;
     }
     
     .nav-links a {
-      margin-left: 30px;
       text-decoration: none;
-      color: #666;
+      color: #333;
       font-weight: 500;
-      transition: color 0.3s;
+      transition: all 0.3s;
+      position: relative;
     }
     
     .nav-links a:hover {
       color: #00b4db;
     }
     
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: #00b4db;
+      transition: width 0.3s;
+    }
+    
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+    
     .lang-switcher {
       display: flex;
-      background: #f0f0f0;
-      border-radius: 25px;
-      padding: 4px;
+      gap: 10px;
     }
     
     .lang-btn {
-      padding: 8px 16px;
-      border: none;
       background: transparent;
-      border-radius: 20px;
+      border: 2px solid #e0e0e0;
+      border-radius: 8px;
+      padding: 8px 12px;
       cursor: pointer;
-      font-weight: 600;
-      font-size: 14px;
-      color: #666;
+      font-size: 16px;
       transition: all 0.3s;
     }
     
-    .lang-btn.active {
-      background: linear-gradient(135deg, #00b4db 0%, #0083b0 100%);
-      color: #fff;
+    .lang-btn:hover, .lang-btn.active {
+      border-color: #00b4db;
+      background: #00b4db;
+      color: white;
     }
     
     /* Hero Section */
     .hero {
       min-height: 100vh;
+      padding: 120px 0 80px;
+      background: linear-gradient(135deg, #e0f7fa 0%, #b2ebf2 100%);
       display: flex;
       align-items: center;
       position: relative;
       overflow: hidden;
-      background: linear-gradient(135deg, #e0f7fa 0%, #b2ebf2 50%, #e0f7fa 100%);
     }
     
-    .hero-bg-drops {
+    .hero-droplets {
       position: absolute;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
       pointer-events: none;
-      overflow: hidden;
     }
     
-    .drop {
+    .droplet {
       position: absolute;
-      width: 20px;
-      height: 30px;
-      background: linear-gradient(180deg, rgba(0,180,219,0.3) 0%, rgba(0,180,219,0.1) 100%);
-      border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
-      animation: droplet 4s linear infinite;
+      width: 10px;
+      height: 10px;
+      background: rgba(0, 180, 219, 0.3);
+      border-radius: 50%;
+      animation: droplet 5s infinite linear;
     }
-    
-    .drop:nth-child(1) { left: 10%; animation-delay: 0s; }
-    .drop:nth-child(2) { left: 25%; animation-delay: 1s; }
-    .drop:nth-child(3) { left: 40%; animation-delay: 2s; }
-    .drop:nth-child(4) { left: 55%; animation-delay: 0.5s; }
-    .drop:nth-child(5) { left: 70%; animation-delay: 1.5s; }
-    .drop:nth-child(6) { left: 85%; animation-delay: 2.5s; }
     
     .hero-content {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 60px;
+      gap: 80px;
       align-items: center;
-      padding: 120px 0 80px;
-      position: relative;
-      z-index: 2;
+      min-height: 70vh;
     }
     
-    .hero-text {
-      animation: fadeInLeft 1s ease-out;
-    }
-    
-    .hero-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: linear-gradient(135deg, #ffd54f 0%, #ffb300 100%);
-      color: #5d4037;
-      padding: 10px 24px;
-      border-radius: 30px;
-      font-weight: 600;
-      font-size: 14px;
-      margin-bottom: 24px;
-      animation: pulse 2s ease-in-out infinite;
-    }
-    
-    .hero h1 {
-      font-size: 56px;
+    .hero-text h1 {
+      font-size: 64px;
       font-weight: 800;
       line-height: 1.1;
-      margin-bottom: 24px;
-      color: #0d47a1;
+      margin-bottom: 30px;
+      animation: fadeInUp 1s ease 0.2s both;
     }
     
-    .hero h1 .highlight {
+    .highlight {
       background: linear-gradient(135deg, #00b4db 0%, #0083b0 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
     }
     
-    .hero p {
+    .hero-text p {
       font-size: 20px;
-      color: #546e7a;
       line-height: 1.7;
       margin-bottom: 40px;
+      color: #666;
+      animation: fadeInUp 1s ease 0.4s both;
     }
     
     .hero-buttons {
       display: flex;
-      gap: 16px;
-      flex-wrap: wrap;
+      gap: 20px;
+      animation: fadeInUp 1s ease 0.6s both;
+    }
+    
+    .btn-primary, .btn-secondary {
+      padding: 18px 36px;
+      border-radius: 60px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 18px;
+      transition: all 0.4s;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      position: relative;
+      overflow: hidden;
     }
     
     .btn-primary {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      padding: 18px 36px;
       background: linear-gradient(135deg, #00b4db 0%, #0083b0 100%);
-      color: #fff;
-      text-decoration: none;
-      border-radius: 50px;
-      font-weight: 600;
-      font-size: 18px;
-      transition: all 0.3s;
-      box-shadow: 0 10px 30px rgba(0,180,219,0.3);
+      color: white;
+      box-shadow: 0 8px 30px rgba(0, 180, 219, 0.3);
     }
     
     .btn-primary:hover {
       transform: translateY(-3px);
-      box-shadow: 0 15px 40px rgba(0,180,219,0.4);
+      box-shadow: 0 15px 40px rgba(0, 180, 219, 0.4);
     }
     
     .btn-secondary {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      padding: 18px 36px;
-      background: #fff;
-      color: #0083b0;
-      text-decoration: none;
-      border-radius: 50px;
-      font-weight: 600;
-      font-size: 18px;
-      transition: all 0.3s;
-      border: 2px solid #00b4db;
+      background: white;
+      color: #333;
+      border: 2px solid #e0e0e0;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
     }
     
     .btn-secondary:hover {
-      background: #e0f7fa;
       transform: translateY(-3px);
+      border-color: #00b4db;
+      color: #00b4db;
     }
     
     .hero-image {
       position: relative;
-      animation: fadeInRight 1s ease-out;
+      animation: fadeInRight 1s ease 0.4s both;
     }
     
     .hero-image img {
       width: 100%;
+      max-width: 500px;
       border-radius: 30px;
-      box-shadow: 0 30px 80px rgba(0,0,0,0.15);
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.15);
       animation: float 6s ease-in-out infinite;
     }
     
@@ -324,404 +317,364 @@
       position: absolute;
       bottom: -30px;
       right: -30px;
-      width: 200px;
-      height: 200px;
-      animation: float 4s ease-in-out infinite;
-      animation-delay: 1s;
-    }
-    
-    .water-glass img {
-      width: 100%;
-      filter: drop-shadow(0 20px 40px rgba(0,180,219,0.3));
+      width: 150px;
+      height: 150px;
+      background: linear-gradient(135deg, #00b4db 0%, #0083b0 100%);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 60px;
+      animation: pulse 3s ease-in-out infinite;
+      box-shadow: 0 20px 60px rgba(0, 180, 219, 0.4);
     }
     
     /* Social Proof */
     .social-proof {
-      padding: 60px 0;
-      background: #fff;
-    }
-    
-    .social-proof-content {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 60px;
-      flex-wrap: wrap;
-    }
-    
-    .proof-item {
+      background: white;
+      padding: 80px 0;
       text-align: center;
     }
     
-    .proof-item .number {
-      font-size: 48px;
-      font-weight: 800;
-      background: linear-gradient(135deg, #00b4db 0%, #0083b0 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+    .proof-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 60px;
     }
     
-    .proof-item .label {
+    .proof-item {
+      animation: fadeInUp 0.8s ease both;
+    }
+    
+    .proof-item:nth-child(1) { animation-delay: 0.1s; }
+    .proof-item:nth-child(2) { animation-delay: 0.2s; }
+    .proof-item:nth-child(3) { animation-delay: 0.3s; }
+    .proof-item:nth-child(4) { animation-delay: 0.4s; }
+    
+    .proof-number {
+      font-size: 48px;
+      font-weight: 800;
+      color: #00b4db;
+      display: block;
+      margin-bottom: 10px;
+    }
+    
+    .proof-label {
       font-size: 16px;
       color: #666;
-      margin-top: 8px;
+      font-weight: 500;
     }
     
     /* Lifestyle Section */
     .lifestyle {
-      padding: 100px 0;
-      background: linear-gradient(180deg, #fff 0%, #f5f5f5 100%);
-    }
-    
-    .lifestyle-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 24px;
-    }
-    
-    .lifestyle-card {
-      position: relative;
-      border-radius: 24px;
-      overflow: hidden;
-      aspect-ratio: 3/4;
-      cursor: pointer;
-      transition: all 0.5s;
-    }
-    
-    .lifestyle-card:hover {
-      transform: scale(1.03);
-    }
-    
-    .lifestyle-card img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.5s;
-    }
-    
-    .lifestyle-card:hover img {
-      transform: scale(1.1);
-    }
-    
-    .lifestyle-card .overlay {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      padding: 30px 20px;
-      background: linear-gradient(0deg, rgba(0,0,0,0.7) 0%, transparent 100%);
-      color: #fff;
-      transform: translateY(100%);
-      transition: transform 0.5s;
-    }
-    
-    .lifestyle-card:hover .overlay {
-      transform: translateY(0);
-    }
-    
-    .lifestyle-card .quote {
-      font-size: 14px;
-      font-style: italic;
-      margin-bottom: 8px;
-    }
-    
-    .lifestyle-card .name {
-      font-size: 12px;
-      opacity: 0.8;
-    }
-    
-    /* Features Section */
-    .features {
+      background: #fafafa;
       padding: 120px 0;
-      background: #fff;
     }
     
     .section-header {
       text-align: center;
+      margin-bottom: 80px;
       max-width: 700px;
-      margin: 0 auto 80px;
+      margin-left: auto;
+      margin-right: auto;
     }
     
     .section-tag {
       display: inline-block;
-      background: linear-gradient(135deg, #e0f7fa 0%, #b2ebf2 100%);
-      color: #0083b0;
-      padding: 8px 20px;
-      border-radius: 20px;
+      background: linear-gradient(135deg, #e1f5fe 0%, #b3e5fc 100%);
+      color: #0277bd;
+      padding: 10px 24px;
+      border-radius: 30px;
+      font-size: 16px;
       font-weight: 600;
-      font-size: 14px;
       margin-bottom: 20px;
     }
     
     .section-header h2 {
-      font-size: 44px;
-      font-weight: 800;
-      color: #0d47a1;
+      font-size: 48px;
+      font-weight: 700;
       margin-bottom: 20px;
       line-height: 1.2;
     }
     
     .section-header p {
-      font-size: 18px;
+      font-size: 20px;
       color: #666;
-      line-height: 1.7;
+      line-height: 1.6;
+    }
+    
+    .lifestyle-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 40px;
+    }
+    
+    .lifestyle-card {
+      background: white;
+      padding: 40px;
+      border-radius: 20px;
+      text-align: center;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+      transition: all 0.4s;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .lifestyle-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+    }
+    
+    .lifestyle-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+      transition: left 0.5s;
+    }
+    
+    .lifestyle-card:hover::before {
+      left: 100%;
+    }
+    
+    .lifestyle-avatar {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      margin: 0 auto 20px;
+      background: linear-gradient(135deg, #e1f5fe 0%, #b3e5fc 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 36px;
+    }
+    
+    .lifestyle-card h3 {
+      font-size: 22px;
+      font-weight: 600;
+      margin-bottom: 15px;
+    }
+    
+    .lifestyle-card p {
+      color: #666;
+      line-height: 1.6;
+      font-size: 16px;
+    }
+    
+    /* Features Section */
+    .features {
+      padding: 120px 0;
+      background: white;
     }
     
     .features-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 30px;
+      gap: 50px;
+      margin-top: 80px;
     }
     
     .feature-card {
-      background: #fff;
-      padding: 40px;
-      border-radius: 24px;
       text-align: center;
+      padding: 50px 30px;
+      border-radius: 20px;
       transition: all 0.4s;
-      border: 2px solid #f0f0f0;
-      position: relative;
-      overflow: hidden;
-    }
-    
-    .feature-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 4px;
-      background: linear-gradient(90deg, #00b4db, #0083b0);
-      transform: scaleX(0);
-      transition: transform 0.4s;
     }
     
     .feature-card:hover {
+      background: linear-gradient(135deg, #e0f7fa 0%, #b2ebf2 100%);
       transform: translateY(-10px);
-      box-shadow: 0 20px 60px rgba(0,180,219,0.15);
-      border-color: #00b4db;
-    }
-    
-    .feature-card:hover::before {
-      transform: scaleX(1);
     }
     
     .feature-icon {
       width: 80px;
       height: 80px;
-      background: linear-gradient(135deg, #e0f7fa 0%, #b2ebf2 100%);
-      border-radius: 20px;
+      margin: 0 auto 30px;
+      background: linear-gradient(135deg, #00b4db 0%, #0083b0 100%);
+      border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 40px;
-      margin: 0 auto 24px;
-      transition: transform 0.4s;
+      font-size: 36px;
+      color: white;
+      position: relative;
     }
     
-    .feature-card:hover .feature-icon {
-      transform: scale(1.1) rotate(5deg);
+    .feature-icon::after {
+      content: '';
+      position: absolute;
+      inset: -10px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #00b4db 0%, #0083b0 100%);
+      opacity: 0.2;
+      animation: ripple 3s ease-in-out infinite;
     }
     
     .feature-card h3 {
-      font-size: 22px;
-      font-weight: 700;
-      margin-bottom: 12px;
-      color: #0d47a1;
+      font-size: 24px;
+      font-weight: 600;
+      margin-bottom: 20px;
     }
     
     .feature-card p {
       color: #666;
       line-height: 1.6;
-      font-size: 15px;
+      font-size: 16px;
     }
     
-    .feature-badge {
-      display: inline-block;
-      background: linear-gradient(135deg, #ffd54f 0%, #ffb300 100%);
-      color: #5d4037;
-      padding: 6px 14px;
-      border-radius: 20px;
-      font-size: 12px;
-      font-weight: 600;
-      margin-top: 16px;
-    }
-    
-    /* App Preview */
+    /* App Preview Section */
     .app-preview {
       padding: 120px 0;
-      background: linear-gradient(135deg, #0083b0 0%, #005b7f 100%);
-      position: relative;
-      overflow: hidden;
+      background: #fafafa;
     }
     
-    .app-preview-bg {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      opacity: 0.1;
-      background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-    }
-    
-    .app-preview-content {
+    .preview-content {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 80px;
       align-items: center;
-      position: relative;
-      z-index: 2;
     }
     
-    .app-preview-text {
-      color: #fff;
+    .preview-text h2 {
+      font-size: 48px;
+      font-weight: 700;
+      margin-bottom: 30px;
+      line-height: 1.2;
     }
     
-    .app-preview-text h2 {
-      font-size: 44px;
-      font-weight: 800;
-      margin-bottom: 24px;
-    }
-    
-    .app-preview-text p {
-      font-size: 18px;
-      opacity: 0.9;
+    .preview-text p {
+      font-size: 20px;
+      color: #666;
       line-height: 1.7;
       margin-bottom: 40px;
     }
     
-    .app-preview-features {
-      display: grid;
-      gap: 20px;
-    }
-    
-    .preview-feature {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      background: rgba(255,255,255,0.1);
-      padding: 20px;
-      border-radius: 16px;
-      transition: all 0.3s;
-    }
-    
-    .preview-feature:hover {
-      background: rgba(255,255,255,0.2);
-      transform: translateX(10px);
-    }
-    
-    .preview-feature-icon {
-      font-size: 32px;
-    }
-    
-    .preview-feature-text h4 {
-      font-size: 18px;
-      font-weight: 600;
-      margin-bottom: 4px;
-    }
-    
-    .preview-feature-text p {
-      font-size: 14px;
-      opacity: 0.8;
-      margin: 0;
-    }
-    
-    .app-mockup {
-      position: relative;
-    }
-    
-    .app-mockup img {
-      width: 100%;
-      max-width: 350px;
-      margin: 0 auto;
-      display: block;
-      border-radius: 40px;
-      box-shadow: 0 40px 100px rgba(0,0,0,0.4);
-      animation: float 6s ease-in-out infinite;
-    }
-    
-    /* Testimonials */
-    .testimonials {
-      padding: 120px 0;
-      background: #f8f9fa;
-    }
-    
-    .testimonials-grid {
+    .preview-features {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 30px;
     }
     
+    .preview-feature {
+      text-align: center;
+      padding: 30px 20px;
+      background: white;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+      transition: all 0.4s;
+    }
+    
+    .preview-feature:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+    }
+    
+    .preview-feature .icon {
+      font-size: 48px;
+      margin-bottom: 20px;
+      display: block;
+    }
+    
+    .preview-feature h4 {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+    
+    .preview-feature p {
+      font-size: 14px;
+      color: #666;
+      line-height: 1.5;
+      margin: 0;
+    }
+    
+    .preview-image {
+      position: relative;
+      text-align: center;
+    }
+    
+    .app-screenshot {
+      width: 100%;
+      max-width: 400px;
+      border-radius: 30px;
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.15);
+      animation: float 6s ease-in-out infinite 2s;
+    }
+    
+    /* Testimonials */
+    .testimonials {
+      padding: 120px 0;
+      background: white;
+    }
+    
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 40px;
+      margin-top: 80px;
+    }
+    
     .testimonial-card {
-      background: #fff;
+      background: #fafafa;
       padding: 40px;
-      border-radius: 24px;
-      box-shadow: 0 10px 40px rgba(0,0,0,0.05);
+      border-radius: 20px;
+      position: relative;
       transition: all 0.4s;
     }
     
     .testimonial-card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+      background: linear-gradient(135deg, #e0f7fa 0%, #b2ebf2 100%);
+      transform: translateY(-5px);
     }
     
-    .testimonial-header {
-      display: flex;
-      align-items: center;
-      gap: 16px;
+    .testimonial-card::before {
+      content: '"';
+      position: absolute;
+      top: -10px;
+      left: 20px;
+      font-size: 80px;
+      color: #00b4db;
+      opacity: 0.3;
+      font-family: serif;
+    }
+    
+    .testimonial-content {
       margin-bottom: 20px;
+      font-size: 16px;
+      line-height: 1.7;
+      font-style: italic;
     }
     
-    .testimonial-avatar {
-      width: 60px;
-      height: 60px;
-      border-radius: 50%;
-      object-fit: cover;
-    }
-    
-    .testimonial-info h4 {
-      font-size: 18px;
+    .testimonial-author {
       font-weight: 600;
       color: #333;
     }
     
-    .testimonial-info p {
+    .testimonial-role {
       font-size: 14px;
       color: #666;
-    }
-    
-    .testimonial-stars {
-      color: #ffc107;
-      font-size: 18px;
-      margin-bottom: 16px;
-    }
-    
-    .testimonial-text {
-      font-size: 16px;
-      color: #555;
-      line-height: 1.7;
-      font-style: italic;
     }
     
     /* Pricing */
     .pricing {
       padding: 120px 0;
-      background: #fff;
+      background: #fafafa;
     }
     
     .pricing-grid {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: repeat(3, 1fr);
       gap: 30px;
-      max-width: 900px;
+      max-width: 1000px;
       margin: 0 auto;
     }
     
     .pricing-card {
       background: #fff;
-      padding: 50px;
+      padding: 50px 40px;
       border-radius: 30px;
       text-align: center;
       position: relative;
@@ -732,6 +685,7 @@
     .pricing-card:hover {
       border-color: #00b4db;
       box-shadow: 0 20px 60px rgba(0,180,219,0.15);
+      transform: translateY(-5px);
     }
     
     .pricing-card.featured {
@@ -739,6 +693,10 @@
       color: #fff;
       transform: scale(1.05);
       border: none;
+    }
+    
+    .pricing-card.featured:hover {
+      transform: scale(1.05) translateY(-5px);
     }
     
     .pricing-badge {
@@ -761,7 +719,7 @@
     }
     
     .pricing-price {
-      font-size: 56px;
+      font-size: 48px;
       font-weight: 800;
       margin-bottom: 8px;
     }
@@ -774,12 +732,12 @@
     
     .pricing-features {
       text-align: left;
-      margin-bottom: 30px;
+      margin-bottom: 40px;
     }
     
     .pricing-features li {
       list-style: none;
-      padding: 14px 0;
+      padding: 12px 0;
       border-bottom: 1px solid rgba(0,0,0,0.05);
       font-size: 16px;
       display: flex;
@@ -800,6 +758,32 @@
       color: #ffd54f;
     }
     
+    .pricing-btn {
+      width: 100%;
+      padding: 15px;
+      border-radius: 50px;
+      border: none;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    
+    .pricing-card:not(.featured) .pricing-btn {
+      background: linear-gradient(135deg, #00b4db 0%, #0083b0 100%);
+      color: white;
+    }
+    
+    .pricing-card.featured .pricing-btn {
+      background: white;
+      color: #00b4db;
+    }
+    
+    .pricing-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    }
+    
     /* CTA Section */
     .cta {
       padding: 120px 0;
@@ -809,42 +793,27 @@
       overflow: hidden;
     }
     
-    .cta-content {
-      position: relative;
-      z-index: 2;
-    }
-    
-    .cta-image {
-      width: 200px;
-      margin: 0 auto 40px;
-      animation: float 4s ease-in-out infinite;
-    }
-    
-    .cta-image img {
-      width: 100%;
-      filter: drop-shadow(0 20px 40px rgba(0,180,219,0.3));
-    }
-    
     .cta h2 {
       font-size: 48px;
-      font-weight: 800;
-      color: #0d47a1;
+      font-weight: 700;
       margin-bottom: 20px;
+      line-height: 1.2;
     }
     
     .cta p {
       font-size: 20px;
-      color: #546e7a;
+      color: #666;
       margin-bottom: 40px;
-      max-width: 600px;
-      margin-left: auto;
-      margin-right: auto;
+    }
+    
+    .cta .hero-buttons {
+      justify-content: center;
     }
     
     /* Footer */
     footer {
-      background: #0d47a1;
-      color: #fff;
+      background: #333;
+      color: white;
       padding: 80px 0 40px;
     }
     
@@ -852,117 +821,73 @@
       display: grid;
       grid-template-columns: 2fr 1fr 1fr 1fr;
       gap: 60px;
-      margin-bottom: 60px;
-    }
-    
-    .footer-brand h3 {
-      font-size: 28px;
-      font-weight: 700;
-      margin-bottom: 16px;
-    }
-    
-    .footer-brand p {
-      opacity: 0.8;
-      line-height: 1.7;
+      margin-bottom: 40px;
     }
     
     .footer-col h4 {
-      font-size: 18px;
+      font-size: 20px;
       font-weight: 600;
-      margin-bottom: 24px;
+      margin-bottom: 20px;
     }
     
     .footer-col a {
-      display: block;
-      color: rgba(255,255,255,0.8);
+      color: #ccc;
       text-decoration: none;
-      margin-bottom: 14px;
-      transition: all 0.3s;
+      display: block;
+      margin-bottom: 10px;
+      transition: color 0.3s;
     }
     
     .footer-col a:hover {
-      color: #fff;
-      transform: translateX(5px);
+      color: #00b4db;
     }
     
     .footer-bottom {
-      text-align: center;
+      border-top: 1px solid #555;
       padding-top: 40px;
-      border-top: 1px solid rgba(255,255,255,0.1);
+      text-align: center;
+      color: #999;
     }
     
-    .footer-bottom p {
-      opacity: 0.6;
-      font-size: 14px;
-    }
-    
-    .footer-team {
-      font-size: 24px;
-      margin-top: 16px;
-    }
-    
-    /* Responsive */
-    @media (max-width: 1024px) {
+    /* Responsive Design */
+    @media (max-width: 768px) {
       .hero-content {
         grid-template-columns: 1fr;
+        gap: 40px;
         text-align: center;
       }
       
-      .hero-image {
-        order: -1;
-        max-width: 400px;
-        margin: 0 auto;
+      .hero-text h1 {
+        font-size: 36px;
       }
       
       .hero-buttons {
-        justify-content: center;
+        flex-direction: column;
+        align-items: center;
       }
       
-      .features-grid {
+      .proof-grid {
         grid-template-columns: repeat(2, 1fr);
+        gap: 30px;
       }
       
       .lifestyle-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-      
-      .app-preview-content {
         grid-template-columns: 1fr;
-        text-align: center;
       }
       
-      .app-mockup {
-        order: -1;
+      .features-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+      
+      .preview-content {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        text-align: center;
       }
       
       .testimonials-grid {
         grid-template-columns: 1fr;
-      }
-      
-      .footer-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-    }
-    
-    @media (max-width: 768px) {
-      .hero h1 {
-        font-size: 36px;
-      }
-      
-      .section-header h2 {
-        font-size: 32px;
-      }
-      
-      .nav-links {
-        display: none;
-      }
-      
-      .features-grid {
-        grid-template-columns: 1fr;
-      }
-      
-      .lifestyle-grid {
-        grid-template-columns: 1fr 1fr;
       }
       
       .pricing-grid {
@@ -978,27 +903,39 @@
         text-align: center;
       }
       
-      .water-glass {
-        width: 120px;
-        right: 0;
+      .nav-links {
+        display: none;
+      }
+      
+      .section-header h2 {
+        font-size: 32px;
+      }
+      
+      .preview-text h2 {
+        font-size: 32px;
+      }
+      
+      .cta h2 {
+        font-size: 32px;
       }
     }
   </style>
 </head>
 <body>
+  <!-- Header -->
   <header>
     <div class="container">
       <nav>
         <div class="logo">💧 WaterLog</div>
         <div class="nav-right">
           <div class="nav-links">
-            <a href="#features" data-i18n="nav.features">Features</a>
-            <a href="#pricing" data-i18n="nav.pricing">Pricing</a>
-            <a href="#download" data-i18n="nav.download">Download</a>
+            <a href="#features" data-i18n="nav.features">機能</a>
+            <a href="#pricing" data-i18n="nav.pricing">料金</a>
+            <a href="#download" data-i18n="nav.download">ダウンロード</a>
           </div>
           <div class="lang-switcher">
-            <button class="lang-btn" data-lang="ja">🇯🇵</button>
-            <button class="lang-btn active" data-lang="en">🇺🇸</button>
+            <button class="lang-btn active" data-lang="ja">🇯🇵</button>
+            <button class="lang-btn" data-lang="en">🇺🇸</button>
           </div>
         </div>
       </nav>
@@ -1007,25 +944,16 @@
 
   <!-- Hero Section -->
   <section class="hero">
-    <div class="hero-bg-drops">
-      <div class="drop"></div>
-      <div class="drop"></div>
-      <div class="drop"></div>
-      <div class="drop"></div>
-      <div class="drop"></div>
-      <div class="drop"></div>
-    </div>
-    
+    <div class="hero-droplets"></div>
     <div class="container">
       <div class="hero-content">
         <div class="hero-text">
-          <span class="hero-badge">🎮 Gamify Your Health!</span>
-          <h1 data-i18n="hero.title">Make Drinking Water <span class="highlight">Actually Fun</span></h1>
-          <p data-i18n="hero.subtitle">Level up, unlock achievements, and raise virtual pets while building a healthy hydration habit. Join thousands who've transformed their daily water intake into an exciting game.</p>
+          <h1 data-i18n="hero.title">水を飲むのが<span class="highlight">楽しくなる</span>アプリ</h1>
+          <p data-i18n="hero.subtitle">レベルアップ、実績解除、ペット育成...ゲーミフィケーションで毎日の水分補給が楽しみに！</p>
           
           <div class="hero-buttons" id="download">
             <a href="https://apps.apple.com/app/waterlog" class="btn-primary">
-              <span>🍎</span> <span data-i18n="hero.appstore">Download Free</span>
+              <span>🍎</span> <span data-i18n="hero.appstore">無料ダウンロード</span>
             </a>
             <a href="https://play.google.com/store/apps/details?id=com.turtlerabbit.waterlog" class="btn-secondary">
               <span>▶️</span> <span data-i18n="hero.playstore">Google Play</span>
@@ -1035,9 +963,7 @@
         
         <div class="hero-image">
           <img src="https://images.unsplash.com/photo-1548839140-29a749e1cf4d?w=600&h=800&fit=crop" alt="Refreshing glass of water">
-          <div class="water-glass">
-            <img src="https://images.unsplash.com/photo-1606168094336-48f205276929?w=300&h=300&fit=crop" alt="Glass of water with ice">
-          </div>
+          <div class="water-glass">💧</div>
         </div>
       </div>
     </div>
@@ -1046,22 +972,22 @@
   <!-- Social Proof -->
   <section class="social-proof">
     <div class="container">
-      <div class="social-proof-content">
-        <div class="proof-item animate-on-scroll">
-          <div class="number">50K+</div>
-          <div class="label" data-i18n="proof.users">Happy Users</div>
+      <div class="proof-grid">
+        <div class="proof-item">
+          <span class="proof-number">50,000+</span>
+          <span class="proof-label" data-i18n="proof.users">利用者数</span>
         </div>
-        <div class="proof-item animate-on-scroll">
-          <div class="number">4.9★</div>
-          <div class="label" data-i18n="proof.rating">App Store Rating</div>
+        <div class="proof-item">
+          <span class="proof-number">4.8</span>
+          <span class="proof-label" data-i18n="proof.rating">App Store評価</span>
         </div>
-        <div class="proof-item animate-on-scroll">
-          <div class="number">2M+</div>
-          <div class="label" data-i18n="proof.glasses">Glasses Logged</div>
+        <div class="proof-item">
+          <span class="proof-number">2M+</span>
+          <span class="proof-label" data-i18n="proof.glasses">記録された水</span>
         </div>
-        <div class="proof-item animate-on-scroll">
-          <div class="number">30</div>
-          <div class="label" data-i18n="proof.streak">Day Avg Streak</div>
+        <div class="proof-item">
+          <span class="proof-number">14</span>
+          <span class="proof-label" data-i18n="proof.streak">平均連続日数</span>
         </div>
       </div>
     </div>
@@ -1071,39 +997,28 @@
   <section class="lifestyle">
     <div class="container">
       <div class="section-header animate-on-scroll">
-        <span class="section-tag">Real People, Real Results</span>
-        <h2 data-i18n="lifestyle.title">Join Women Who've Transformed Their Health</h2>
-        <p data-i18n="lifestyle.subtitle">From busy professionals to active grandmothers, WaterLog helps everyone stay hydrated and healthy.</p>
+        <span class="section-tag">🌟 健康な生活</span>
+        <h2 data-i18n="lifestyle.title">健康を変えた人たちの声</h2>
+        <p data-i18n="lifestyle.subtitle">忙しいビジネスパーソンからアクティブなシニアまで、WaterLogは全員の水分補給をサポート。</p>
       </div>
       
       <div class="lifestyle-grid">
         <div class="lifestyle-card animate-on-scroll">
-          <img src="https://images.unsplash.com/photo-1594744803329-e58b31de8bf5?w=400&h=600&fit=crop" alt="Woman in her 30s drinking water">
-          <div class="overlay">
-            <p class="quote">"Finally an app that makes hydration fun! I've never been so consistent."</p>
-            <p class="name">Sarah, 34</p>
-          </div>
+          <div class="lifestyle-avatar">👩‍💼</div>
+          <h3>忙しいビジネスウーマン</h3>
+          <p>会議の合間でも、ゲーム感覚で水分補給の習慣が身につきました。レベルアップが楽しくて続けられています。</p>
         </div>
+        
         <div class="lifestyle-card animate-on-scroll">
-          <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&h=600&fit=crop" alt="Professional woman with water bottle">
-          <div class="overlay">
-            <p class="quote">"The gamification keeps me motivated throughout my busy workday."</p>
-            <p class="name">Michelle, 45</p>
-          </div>
+          <div class="lifestyle-avatar">👩‍🏫</div>
+          <h3>健康意識の高い主婦</h3>
+          <p>家族みんなで使っています。子供たちもペット育成機能で楽しく水分補給。家族の健康管理に最適です。</p>
         </div>
+        
         <div class="lifestyle-card animate-on-scroll">
-          <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=600&fit=crop" alt="Active woman staying hydrated">
-          <div class="overlay">
-            <p class="quote">"My energy levels have improved so much since I started using WaterLog!"</p>
-            <p class="name">Jennifer, 52</p>
-          </div>
-        </div>
-        <div class="lifestyle-card animate-on-scroll">
-          <img src="https://images.unsplash.com/photo-1581579438747-104c53d7fbc4?w=400&h=600&fit=crop" alt="Healthy senior woman">
-          <div class="overlay">
-            <p class="quote">"Simple enough for me to use, and my grandkids love checking my pet fish!"</p>
-            <p class="name">Patricia, 68</p>
-          </div>
+          <div class="lifestyle-avatar">🏃‍♀️</div>
+          <h3>アクティブなシニア</h3>
+          <p>運動前後の水分補給を忘れがちでしたが、実績解除システムで自然と意識するようになりました。</p>
         </div>
       </div>
     </div>
@@ -1113,52 +1028,46 @@
   <section class="features" id="features">
     <div class="container">
       <div class="section-header animate-on-scroll">
-        <span class="section-tag">🎮 Game Features</span>
-        <h2 data-i18n="features.title">More Than Just Tracking</h2>
-        <p data-i18n="features.subtitle">We've turned hydration into an adventure. Every glass of water brings you closer to your goals!</p>
+        <span class="section-tag">⚡ 強力な機能</span>
+        <h2 data-i18n="features.title">ただの記録アプリじゃない</h2>
+        <p data-i18n="features.subtitle">水分補給を冒険に変えました。一杯ごとにゴールに近づきます！</p>
       </div>
       
       <div class="features-grid">
         <div class="feature-card animate-on-scroll">
-          <div class="feature-icon">⭐</div>
-          <h3 data-i18n="features.xp.title">Level & XP System</h3>
-          <p data-i18n="features.xp.desc">Earn XP with every glass. Level up from Water Droplet to Water God!</p>
-          <span class="feature-badge">+5 XP per 100ml</span>
+          <div class="feature-icon">🎮</div>
+          <h3>ゲーミフィケーション</h3>
+          <p>レベルアップ、実績解除、ペット育成で毎日が楽しい冒険に。水分補給が待ち遠しくなります。</p>
         </div>
         
         <div class="feature-card animate-on-scroll">
-          <div class="feature-icon">🔥</div>
-          <h3 data-i18n="features.streak.title">Daily Streaks</h3>
-          <p data-i18n="features.streak.desc">Build your streak and earn bonus rewards. Don't break the chain!</p>
-          <span class="feature-badge">Streak Bonuses</span>
-        </div>
-        
-        <div class="feature-card animate-on-scroll">
-          <div class="feature-icon">🏆</div>
-          <h3 data-i18n="features.achievement.title">Achievements</h3>
-          <p data-i18n="features.achievement.desc">Unlock badges like "No More Quitter" and "Water Master"!</p>
-          <span class="feature-badge">10+ Badges</span>
-        </div>
-        
-        <div class="feature-card animate-on-scroll">
-          <div class="feature-icon">🐠</div>
-          <h3 data-i18n="features.pet.title">Pet Evolution</h3>
-          <p data-i18n="features.pet.desc">Raise a virtual fish that grows as you stay hydrated!</p>
-          <span class="feature-badge">6 Stages</span>
-        </div>
-        
-        <div class="feature-card animate-on-scroll">
-          <div class="feature-icon">🎯</div>
-          <h3 data-i18n="features.challenge.title">Daily Challenges</h3>
-          <p data-i18n="features.challenge.desc">New missions every day keep things fresh and exciting!</p>
-          <span class="feature-badge">Bonus XP</span>
+          <div class="feature-icon">📊</div>
+          <h3>詳細な記録・分析</h3>
+          <p>日々の水分摂取量を詳細に記録。グラフやチャートで健康状態を一目で把握できます。</p>
         </div>
         
         <div class="feature-card animate-on-scroll">
           <div class="feature-icon">🔔</div>
-          <h3 data-i18n="features.reminder.title">Smart Reminders</h3>
-          <p data-i18n="features.reminder.desc">Gentle notifications to keep you on track throughout the day.</p>
-          <span class="feature-badge">Customizable</span>
+          <h3>スマートリマインダー</h3>
+          <p>生活パターンを学習して最適なタイミングでお知らせ。忘れがちな水分補給をサポート。</p>
+        </div>
+        
+        <div class="feature-card animate-on-scroll">
+          <div class="feature-icon">🏆</div>
+          <h3>実績システム</h3>
+          <p>「7日連続」「月間目標達成」など様々な実績を解除。達成感と継続のモチベーションを提供。</p>
+        </div>
+        
+        <div class="feature-card animate-on-scroll">
+          <div class="feature-icon">🐾</div>
+          <h3>バーチャルペット</h3>
+          <p>水分補給でペットが成長。可愛い仲間と一緒に健康習慣を育てていく楽しさを体験。</p>
+        </div>
+        
+        <div class="feature-card animate-on-scroll">
+          <div class="feature-icon">📱</div>
+          <h3>シンプルなUI</h3>
+          <p>ワンタップで記録完了。美しいデザインと直感的な操作で、ストレスなく使い続けられます。</p>
         </div>
       </div>
     </div>
@@ -1166,40 +1075,34 @@
 
   <!-- App Preview -->
   <section class="app-preview">
-    <div class="app-preview-bg"></div>
     <div class="container">
-      <div class="app-preview-content">
-        <div class="app-preview-text animate-on-scroll">
-          <h2 data-i18n="preview.title">Beautiful & Intuitive Design</h2>
-          <p data-i18n="preview.subtitle">Track your intake with just one tap. Watch your water drop fill up as you reach your daily goal.</p>
+      <div class="preview-content">
+        <div class="preview-text animate-on-scroll">
+          <h2 data-i18n="preview.title">美しく直感的なデザイン</h2>
+          <p data-i18n="preview.subtitle">ワンタップで記録。水滴が満たされていく様子を楽しもう。</p>
           
-          <div class="app-preview-features">
+          <div class="preview-features">
             <div class="preview-feature">
-              <span class="preview-feature-icon">💧</span>
-              <div class="preview-feature-text">
-                <h4>One-Tap Logging</h4>
-                <p>Log water in seconds</p>
-              </div>
+              <span class="icon">💧</span>
+              <h4>ワンタップ記録</h4>
+              <p>数秒で水分を記録</p>
             </div>
             <div class="preview-feature">
-              <span class="preview-feature-icon">📊</span>
-              <div class="preview-feature-text">
-                <h4>Visual Progress</h4>
-                <p>Beautiful water drop fills up</p>
-              </div>
+              <span class="icon">📊</span>
+              <h4>視覚的な進捗</h4>
+              <p>水滴が満たされる表示</p>
             </div>
             <div class="preview-feature">
-              <span class="preview-feature-icon">📈</span>
-              <div class="preview-feature-text">
-                <h4>History & Stats</h4>
-                <p>Track your hydration over time</p>
-              </div>
+              <span class="icon">📈</span>
+              <h4>履歴・統計</h4>
+              <p>水分補給の記録を追跡</p>
             </div>
           </div>
         </div>
         
-        <div class="app-mockup animate-on-scroll">
-          <img src="https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?w=400&h=800&fit=crop" alt="WaterLog App Interface">
+        <div class="preview-image animate-on-scroll">
+          <!-- 実際のアプリスクリーンショットに差し替え -->
+          <img src="https://via.placeholder.com/300x600/E3F2FD/1976D2?text=WaterLog+App+Screenshot" alt="WaterLogアプリのスクリーンショット" class="app-screenshot">
         </div>
       </div>
     </div>
@@ -1209,46 +1112,34 @@
   <section class="testimonials">
     <div class="container">
       <div class="section-header animate-on-scroll">
-        <span class="section-tag">❤️ Loved by Thousands</span>
-        <h2 data-i18n="testimonials.title">What Our Users Say</h2>
-        <p data-i18n="testimonials.subtitle">Real reviews from real people who've improved their hydration habits.</p>
+        <span class="section-tag">💬 レビュー</span>
+        <h2 data-i18n="testimonials.title">ユーザーの声</h2>
+        <p data-i18n="testimonials.subtitle">水分補給の習慣を改善した人々からの声。</p>
       </div>
       
       <div class="testimonials-grid">
         <div class="testimonial-card animate-on-scroll">
-          <div class="testimonial-header">
-            <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=100&h=100&fit=crop" alt="Emily" class="testimonial-avatar">
-            <div class="testimonial-info">
-              <h4>Emily W.</h4>
-              <p>Marketing Manager</p>
-            </div>
+          <div class="testimonial-content">
+            ゲーム要素があるから毎日続けられています。ペットが成長するのが楽しみで、自然と水を飲む習慣がつきました。
           </div>
-          <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
-          <p class="testimonial-text">"I've tried so many water apps, but this is the first one that actually got me excited about drinking water. The gamification is genius!"</p>
+          <div class="testimonial-author">田中さき</div>
+          <div class="testimonial-role">会社員・28歳</div>
         </div>
         
         <div class="testimonial-card animate-on-scroll">
-          <div class="testimonial-header">
-            <img src="https://images.unsplash.com/photo-1607746882042-944635dfe10e?w=100&h=100&fit=crop" alt="Lisa" class="testimonial-avatar">
-            <div class="testimonial-info">
-              <h4>Lisa M.</h4>
-              <p>Nurse, Age 47</p>
-            </div>
+          <div class="testimonial-content">
+            シンプルで使いやすく、デザインもとても綺麗。レベルアップ機能で達成感があり、水分補給が楽しくなりました。
           </div>
-          <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
-          <p class="testimonial-text">"After 12-hour shifts, I always forgot to drink water. Now I'm on a 45-day streak! My skin looks better and I have more energy."</p>
+          <div class="testimonial-author">山田ひろし</div>
+          <div class="testimonial-role">エンジニア・35歳</div>
         </div>
         
         <div class="testimonial-card animate-on-scroll">
-          <div class="testimonial-header">
-            <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=100&h=100&fit=crop" alt="Karen" class="testimonial-avatar">
-            <div class="testimonial-info">
-              <h4>Karen S.</h4>
-              <p>Retired Teacher, 62</p>
-            </div>
+          <div class="testimonial-content">
+            リマインダー機能が優秀で、忙しい日でも水分補給を忘れません。家族みんなで使って健康管理しています。
           </div>
-          <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
-          <p class="testimonial-text">"Simple and fun! I love watching my little fish grow. It's become a game I play with my grandchildren - who has the bigger fish?"</p>
+          <div class="testimonial-author">佐藤みか</div>
+          <div class="testimonial-role">主婦・42歳</div>
         </div>
       </div>
     </div>
@@ -1258,39 +1149,56 @@
   <section class="pricing" id="pricing">
     <div class="container">
       <div class="section-header animate-on-scroll">
-        <span class="section-tag">💰 Simple Pricing</span>
-        <h2 data-i18n="pricing.title">Start Free, Upgrade When Ready</h2>
-        <p data-i18n="pricing.subtitle">All the game features are free forever. Premium unlocks extra perks!</p>
+        <span class="section-tag">💰 料金プラン</span>
+        <h2 data-i18n="pricing.title">無料で始めて、好きな時にアップグレード</h2>
+        <p data-i18n="pricing.subtitle">基本機能はすべて無料！プレミアムでさらに便利に。</p>
       </div>
       
       <div class="pricing-grid">
         <div class="pricing-card animate-on-scroll">
-          <div class="pricing-title">Free</div>
-          <div class="pricing-price" data-i18n="pricing.free.price">$0</div>
-          <div class="pricing-period" data-i18n="pricing.free.period">forever</div>
+          <div class="pricing-title" data-i18n="pricing.free.title">無料</div>
+          <div class="pricing-price" data-i18n="pricing.free.price">¥0</div>
+          <div class="pricing-period" data-i18n="pricing.free.period">ずっと無料</div>
           <ul class="pricing-features">
-            <li><span class="check">✓</span> Water tracking & goals</li>
-            <li><span class="check">✓</span> Level & XP system</li>
-            <li><span class="check">✓</span> Achievement badges</li>
-            <li><span class="check">✓</span> Pet evolution</li>
-            <li><span class="check">✓</span> Daily challenges</li>
-            <li><span class="check">✓</span> 7-day history</li>
+            <li><span class="check">✓</span> <span data-i18n="pricing.free.feature1">水分記録・目標設定</span></li>
+            <li><span class="check">✓</span> <span data-i18n="pricing.free.feature2">レベル・XPシステム</span></li>
+            <li><span class="check">✓</span> <span data-i18n="pricing.free.feature3">実績バッジ</span></li>
+            <li><span class="check">✓</span> <span data-i18n="pricing.free.feature4">ペット育成</span></li>
+            <li><span class="check">✓</span> <span data-i18n="pricing.free.feature5">デイリーチャレンジ</span></li>
+            <li><span class="check">✓</span> <span data-i18n="pricing.free.feature6">7日間履歴</span></li>
           </ul>
+          <button class="pricing-btn" data-i18n="pricing.free.button">今すぐ始める</button>
+        </div>
+        
+        <div class="pricing-card animate-on-scroll">
+          <div class="pricing-title" data-i18n="pricing.monthly.title">月額プラン</div>
+          <div class="pricing-price" data-i18n="pricing.monthly.price">¥300</div>
+          <div class="pricing-period" data-i18n="pricing.monthly.period">/月</div>
+          <ul class="pricing-features">
+            <li><span class="check">✓</span> <span data-i18n="pricing.monthly.feature1">無料版のすべて</span></li>
+            <li><span class="check">✓</span> <span data-i18n="pricing.monthly.feature2">30日間履歴</span></li>
+            <li><span class="check">✓</span> <span data-i18n="pricing.monthly.feature3">広告なし</span></li>
+            <li><span class="check">✓</span> <span data-i18n="pricing.monthly.feature4">ホーム画面ウィジェット</span></li>
+            <li><span class="check">✓</span> <span data-i18n="pricing.monthly.feature5">データエクスポート</span></li>
+            <li><span class="check">✓</span> <span data-i18n="pricing.monthly.feature6">優先サポート</span></li>
+          </ul>
+          <button class="pricing-btn" data-i18n="pricing.monthly.button">月額プランを選ぶ</button>
         </div>
         
         <div class="pricing-card featured animate-on-scroll">
-          <div class="pricing-badge">🎉 Best Value</div>
-          <div class="pricing-title">Premium</div>
-          <div class="pricing-price" data-i18n="pricing.premium.price">$19.99</div>
-          <div class="pricing-period" data-i18n="pricing.premium.period">/year</div>
+          <div class="pricing-badge" data-i18n="pricing.yearly.badge">🎉 最もお得</div>
+          <div class="pricing-title" data-i18n="pricing.yearly.title">年額プラン</div>
+          <div class="pricing-price" data-i18n="pricing.yearly.price">¥3,000</div>
+          <div class="pricing-period" data-i18n="pricing.yearly.period">/年</div>
           <ul class="pricing-features">
-            <li><span class="check">✓</span> All free features</li>
-            <li><span class="check">✓</span> 30-day history</li>
-            <li><span class="check">✓</span> Ad-free experience</li>
-            <li><span class="check">✓</span> Home screen widgets</li>
-            <li><span class="check">✓</span> Data export</li>
-            <li><span class="check">✓</span> Priority support</li>
+            <li><span class="check">✓</span> <span data-i18n="pricing.yearly.feature1">無料版のすべて</span></li>
+            <li><span class="check">✓</span> <span data-i18n="pricing.yearly.feature2">無制限履歴</span></li>
+            <li><span class="check">✓</span> <span data-i18n="pricing.yearly.feature3">広告なし</span></li>
+            <li><span class="check">✓</span> <span data-i18n="pricing.yearly.feature4">ホーム画面ウィジェット</span></li>
+            <li><span class="check">✓</span> <span data-i18n="pricing.yearly.feature5">データエクスポート</span></li>
+            <li><span class="check">✓</span> <span data-i18n="pricing.yearly.feature6">優先サポート</span></li>
           </ul>
+          <button class="pricing-btn" data-i18n="pricing.yearly.button">年額プランを選ぶ</button>
         </div>
       </div>
     </div>
@@ -1299,18 +1207,16 @@
   <!-- CTA Section -->
   <section class="cta">
     <div class="container">
-      <div class="cta-content">
-        <div class="cta-image">
-          <img src="https://images.unsplash.com/photo-1559839914-17aae19cec71?w=400&h=400&fit=crop" alt="Fresh water glass">
-        </div>
-        <h2 data-i18n="cta.title">Start Your Hydration Journey Today</h2>
-        <p data-i18n="cta.subtitle">Download free and begin your path to becoming a Water God!</p>
-        <div class="hero-buttons" style="justify-content: center;">
+      <div class="animate-on-scroll">
+        <h2 data-i18n="cta.title">今日から水分補給の旅を始めよう</h2>
+        <p data-i18n="cta.subtitle">無料でダウンロードして、健康な水分補給習慣を手に入れよう！</p>
+        
+        <div class="hero-buttons">
           <a href="https://apps.apple.com/app/waterlog" class="btn-primary">
-            <span>🍎</span> Download for iPhone
+            <span>🍎</span> <span data-i18n="cta.appstore">App Storeで入手</span>
           </a>
           <a href="https://play.google.com/store/apps/details?id=com.turtlerabbit.waterlog" class="btn-secondary">
-            <span>▶️</span> Download for Android
+            <span>▶️</span> <span data-i18n="cta.playstore">Google Playで入手</span>
           </a>
         </div>
       </div>
@@ -1321,51 +1227,62 @@
   <footer>
     <div class="container">
       <div class="footer-grid">
-        <div class="footer-brand">
-          <h3>💧 WaterLog</h3>
-          <p data-i18n="footer.desc">Gamify your hydration. Build healthy habits that stick. Join thousands who've made drinking water fun.</p>
+        <div class="footer-col">
+          <h4>💧 WaterLog</h4>
+          <p data-i18n="footer.desc">水分補給をゲーム化。続く健康習慣を。何千人もが水を飲むのを楽しんでいます。</p>
         </div>
         <div class="footer-col">
-          <h4 data-i18n="footer.links">Links</h4>
-          <a href="#features">Features</a>
-          <a href="#pricing">Pricing</a>
-          <a href="#download">Download</a>
+          <h4 data-i18n="footer.links">リンク</h4>
+          <a href="#features" data-i18n="footer.features">機能</a>
+          <a href="#pricing" data-i18n="footer.pricing">料金</a>
+          <a href="#download" data-i18n="footer.download">ダウンロード</a>
         </div>
         <div class="footer-col">
-          <h4 data-i18n="footer.legal">Legal</h4>
-          <a href="./privacy.html">Privacy Policy</a>
-          <a href="./terms.html">Terms of Service</a>
+          <h4 data-i18n="footer.legal">法的情報</h4>
+          <a href="./privacy.html" data-i18n="footer.privacy">プライバシーポリシー</a>
+          <a href="./terms.html" data-i18n="footer.terms">利用規約</a>
         </div>
         <div class="footer-col">
-          <h4 data-i18n="footer.contact">Contact</h4>
+          <h4 data-i18n="footer.contact">お問い合わせ</h4>
           <a href="mailto:support@waterlog.app">support@waterlog.app</a>
         </div>
       </div>
+      
       <div class="footer-bottom">
-        <p>© 2024 WaterLog. All rights reserved.</p>
-        <div class="footer-team">🐢🤝🐰 Made with love by Turtle & Rabbit</div>
+        <p>&copy; 2024 WaterLog. All rights reserved.</p>
       </div>
     </div>
   </footer>
 
   <script>
-    // Scroll Animation
-    const observerOptions = {
-      threshold: 0.1,
-      rootMargin: '0px 0px -50px 0px'
-    };
+    // Create floating droplets
+    function createDroplets() {
+      const hero = document.querySelector('.hero-droplets');
+      const dropletCount = 20;
+      
+      for (let i = 0; i < dropletCount; i++) {
+        const droplet = document.createElement('div');
+        droplet.className = 'droplet';
+        droplet.style.left = Math.random() * 100 + '%';
+        droplet.style.animationDelay = Math.random() * 5 + 's';
+        droplet.style.animationDuration = (3 + Math.random() * 4) + 's';
+        hero.appendChild(droplet);
+      }
+    }
     
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-        }
-      });
-    }, observerOptions);
-    
-    document.querySelectorAll('.animate-on-scroll').forEach(el => {
-      observer.observe(el);
-    });
+    // Animate elements on scroll
+    function animateOnScroll() {
+      const elements = document.querySelectorAll('.animate-on-scroll');
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('animate');
+          }
+        });
+      }, { threshold: 0.1 });
+      
+      elements.forEach(element => observer.observe(element));
+    }
     
     // Language Switcher
     const translations = {
@@ -1381,8 +1298,8 @@
         'proof.rating': 'App Store Rating',
         'proof.glasses': 'Glasses Logged',
         'proof.streak': 'Day Avg Streak',
-        'lifestyle.title': 'Join Women Who\'ve Transformed Their Health',
-        'lifestyle.subtitle': 'From busy professionals to active grandmothers, WaterLog helps everyone stay hydrated and healthy.',
+        'lifestyle.title': 'Join People Who\'ve Transformed Their Health',
+        'lifestyle.subtitle': 'From busy professionals to active seniors, WaterLog helps everyone stay hydrated and healthy.',
         'features.title': 'More Than Just Tracking',
         'features.subtitle': 'We\'ve turned hydration into an adventure. Every glass of water brings you closer to your goals!',
         'preview.title': 'Beautiful & Intuitive Design',
@@ -1390,16 +1307,50 @@
         'testimonials.title': 'What Our Users Say',
         'testimonials.subtitle': 'Real reviews from real people who\'ve improved their hydration habits.',
         'pricing.title': 'Start Free, Upgrade When Ready',
-        'pricing.subtitle': 'All the game features are free forever. Premium unlocks extra perks!',
+        'pricing.subtitle': 'All basic features are free! Premium adds extra convenience.',
+        'pricing.free.title': 'Free',
         'pricing.free.price': '$0',
         'pricing.free.period': 'forever',
-        'pricing.premium.price': '$19.99',
-        'pricing.premium.period': '/year',
+        'pricing.free.feature1': 'Water tracking & goals',
+        'pricing.free.feature2': 'Level & XP system',
+        'pricing.free.feature3': 'Achievement badges',
+        'pricing.free.feature4': 'Pet evolution',
+        'pricing.free.feature5': 'Daily challenges',
+        'pricing.free.feature6': '7-day history',
+        'pricing.free.button': 'Get Started',
+        'pricing.monthly.title': 'Monthly',
+        'pricing.monthly.price': '$2.99',
+        'pricing.monthly.period': '/month',
+        'pricing.monthly.feature1': 'All free features',
+        'pricing.monthly.feature2': '30-day history',
+        'pricing.monthly.feature3': 'Ad-free experience',
+        'pricing.monthly.feature4': 'Home screen widgets',
+        'pricing.monthly.feature5': 'Data export',
+        'pricing.monthly.feature6': 'Priority support',
+        'pricing.monthly.button': 'Choose Monthly',
+        'pricing.yearly.badge': '🎉 Best Value',
+        'pricing.yearly.title': 'Yearly',
+        'pricing.yearly.price': '$24.99',
+        'pricing.yearly.period': '/year',
+        'pricing.yearly.feature1': 'All free features',
+        'pricing.yearly.feature2': 'Unlimited history',
+        'pricing.yearly.feature3': 'Ad-free experience',
+        'pricing.yearly.feature4': 'Home screen widgets',
+        'pricing.yearly.feature5': 'Data export',
+        'pricing.yearly.feature6': 'Priority support',
+        'pricing.yearly.button': 'Choose Yearly',
         'cta.title': 'Start Your Hydration Journey Today',
-        'cta.subtitle': 'Download free and begin your path to becoming a Water God!',
+        'cta.subtitle': 'Download free and begin your path to healthy hydration habits!',
+        'cta.appstore': 'Get on App Store',
+        'cta.playstore': 'Get on Google Play',
         'footer.desc': 'Gamify your hydration. Build healthy habits that stick. Join thousands who\'ve made drinking water fun.',
         'footer.links': 'Links',
+        'footer.features': 'Features',
+        'footer.pricing': 'Pricing',
+        'footer.download': 'Download',
         'footer.legal': 'Legal',
+        'footer.privacy': 'Privacy Policy',
+        'footer.terms': 'Terms of Service',
         'footer.contact': 'Contact',
       },
       ja: {
@@ -1414,8 +1365,8 @@
         'proof.rating': 'App Store評価',
         'proof.glasses': '記録された水',
         'proof.streak': '平均連続日数',
-        'lifestyle.title': '健康を変えた女性たちの声',
-        'lifestyle.subtitle': '忙しいビジネスウーマンからアクティブなおばあちゃんまで、WaterLogは全員の水分補給をサポート。',
+        'lifestyle.title': '健康を変えた人たちの声',
+        'lifestyle.subtitle': '忙しいビジネスパーソンからアクティブなシニアまで、WaterLogは全員の水分補給をサポート。',
         'features.title': 'ただの記録アプリじゃない',
         'features.subtitle': '水分補給を冒険に変えました。一杯ごとにゴールに近づきます！',
         'preview.title': '美しく直感的なデザイン',
@@ -1423,47 +1374,99 @@
         'testimonials.title': 'ユーザーの声',
         'testimonials.subtitle': '水分補給の習慣を改善した人々からの声。',
         'pricing.title': '無料で始めて、好きな時にアップグレード',
-        'pricing.subtitle': 'ゲーム機能はすべて無料！Premiumでさらに便利に。',
+        'pricing.subtitle': '基本機能はすべて無料！プレミアムでさらに便利に。',
+        'pricing.free.title': '無料',
         'pricing.free.price': '¥0',
         'pricing.free.period': 'ずっと無料',
-        'pricing.premium.price': '¥1,980',
-        'pricing.premium.period': '/年',
+        'pricing.free.feature1': '水分記録・目標設定',
+        'pricing.free.feature2': 'レベル・XPシステム',
+        'pricing.free.feature3': '実績バッジ',
+        'pricing.free.feature4': 'ペット育成',
+        'pricing.free.feature5': 'デイリーチャレンジ',
+        'pricing.free.feature6': '7日間履歴',
+        'pricing.free.button': '今すぐ始める',
+        'pricing.monthly.title': '月額プラン',
+        'pricing.monthly.price': '¥300',
+        'pricing.monthly.period': '/月',
+        'pricing.monthly.feature1': '無料版のすべて',
+        'pricing.monthly.feature2': '30日間履歴',
+        'pricing.monthly.feature3': '広告なし',
+        'pricing.monthly.feature4': 'ホーム画面ウィジェット',
+        'pricing.monthly.feature5': 'データエクスポート',
+        'pricing.monthly.feature6': '優先サポート',
+        'pricing.monthly.button': '月額プランを選ぶ',
+        'pricing.yearly.badge': '🎉 最もお得',
+        'pricing.yearly.title': '年額プラン',
+        'pricing.yearly.price': '¥3,000',
+        'pricing.yearly.period': '/年',
+        'pricing.yearly.feature1': '無料版のすべて',
+        'pricing.yearly.feature2': '無制限履歴',
+        'pricing.yearly.feature3': '広告なし',
+        'pricing.yearly.feature4': 'ホーム画面ウィジェット',
+        'pricing.yearly.feature5': 'データエクスポート',
+        'pricing.yearly.feature6': '優先サポート',
+        'pricing.yearly.button': '年額プランを選ぶ',
         'cta.title': '今日から水分補給の旅を始めよう',
-        'cta.subtitle': '無料でダウンロードして、水神への道を歩み始めよう！',
+        'cta.subtitle': '無料でダウンロードして、健康な水分補給習慣を手に入れよう！',
+        'cta.appstore': 'App Storeで入手',
+        'cta.playstore': 'Google Playで入手',
         'footer.desc': '水分補給をゲーム化。続く健康習慣を。何千人もが水を飲むのを楽しんでいます。',
         'footer.links': 'リンク',
+        'footer.features': '機能',
+        'footer.pricing': '料金',
+        'footer.download': 'ダウンロード',
         'footer.legal': '法的情報',
+        'footer.privacy': 'プライバシーポリシー',
+        'footer.terms': '利用規約',
         'footer.contact': 'お問い合わせ',
       }
     };
 
-    let currentLang = localStorage.getItem('lang') || 'en';
+    let currentLang = localStorage.getItem('lang') || 'ja';
 
     function setLanguage(lang) {
       currentLang = lang;
       localStorage.setItem('lang', lang);
-      document.documentElement.lang = lang === 'ja' ? 'ja' : 'en';
+      document.documentElement.lang = lang;
       
-      document.querySelectorAll('[data-i18n]').forEach(el => {
-        const key = el.getAttribute('data-i18n');
-        if (translations[lang][key]) {
-          el.innerHTML = translations[lang][key];
+      // Update active button
+      document.querySelectorAll('.lang-btn').forEach(btn => {
+        btn.classList.remove('active');
+        if (btn.dataset.lang === lang) {
+          btn.classList.add('active');
         }
       });
       
-      document.querySelectorAll('.lang-btn').forEach(btn => {
-        btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
+      // Update all translatable elements
+      document.querySelectorAll('[data-i18n]').forEach(element => {
+        const key = element.dataset.i18n;
+        if (translations[lang] && translations[lang][key]) {
+          element.innerHTML = translations[lang][key];
+        }
       });
+      
+      // Update document title and meta
+      if (lang === 'ja') {
+        document.title = 'WaterLog - 水を飲むのが楽しくなるアプリ 🎮💧';
+        document.querySelector('meta[name="description"]').content = 'ゲーム感覚で水分補給！レベルアップ、実績解除、ペット育成で毎日の水分補給が楽しくなる無料アプリ。';
+      } else {
+        document.title = 'WaterLog - Make Drinking Water Actually Fun 🎮💧';
+        document.querySelector('meta[name="description"]').content = 'Level up, unlock achievements, and raise virtual pets while building a healthy hydration habit. The gamified water tracking app.';
+      }
     }
 
+    // Language switcher event listeners
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        setLanguage(btn.dataset.lang);
+      });
+    });
+
+    // Initialize
     document.addEventListener('DOMContentLoaded', () => {
       setLanguage(currentLang);
-      
-      document.querySelectorAll('.lang-btn').forEach(btn => {
-        btn.addEventListener('click', () => {
-          setLanguage(btn.getAttribute('data-lang'));
-        });
-      });
+      createDroplets();
+      animateOnScroll();
     });
   </script>
 </body>
